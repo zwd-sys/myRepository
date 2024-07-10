@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.mapper.CouponMapper">
+    <resultMap id="bb" type="coupon">
+        <id property="couponId" column="couponId"></id>
+        <result property="coupon_value" column="coupon_value"></result>
+    </resultMap>
+
+    <select id="queryByOpenid" resultMap="bb">
+        SELECT * FROM coupon c ,user1 u,user_coupon uc where u.openId=#{openId} and u.id=uc.user_id and uc.coupon_id=c.couponId
+    </select>
+    <insert id="insertCoupon" parameterType="user_coupon">
+        insert  into user_coupon (coupon_id,user_id) values (#{coupon_id},#{user_id})
+    </insert>
+    <select id="queryByVal" resultType="coupon">
+        select * from coupon where coupon_value=#{coupon_value}
+    </select>
+
+    <delete id="delete" parameterType="user_coupon">
+        delete from user_coupon where cid=#{cid}
+    </delete>
+</mapper>

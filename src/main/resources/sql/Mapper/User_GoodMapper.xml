@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.mapper.User_GoodMapper">
+    <resultMap id="aa" type="user_good">
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="xiadan_time" column="xiadan_time"></result>
+        <result property="good_code" column="good_code"></result>
+        <result property="money" column="money"></result>
+        <result property="coupon_money" column="coupon_money"></result>
+        <collection property="goodList" ofType="good">
+            <result property="gid" column="gid"></result>
+            <result property="name" column="name"></result>
+            <result property="img" column="img"></result>
+            <result property="price" column="price"></result>
+            <result property="num" column="num"></result>
+        </collection>
+    </resultMap>
+    <insert id="insert" parameterType="user_good">
+        insert  into user_goods (user_id,good_id,good_num,good_time,good_code) values (#{user_id},#{good_id},#{good_num},#{good_time},#{good_code})
+    </insert>
+
+    <select id="queryByCode" resultMap="aa">
+        SELECT * FROM user_goods u,good g WHERE u.good_id=g.gid AND u.user_id=#{user_id} and u.good_code=#{good_code}
+    </select>
+</mapper>

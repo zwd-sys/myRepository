@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.mapper.GoodMapper">
+<!--    <resultMap id="cc" type="coupon">-->
+<!--        <id property="couponId" column="couponId"></id>-->
+<!--        <result property="coupon_value" column="coupon_value"></result>-->
+<!--    </resultMap>-->
+
+<!--    <select id="queryAll" resultMap="">-->
+<!--        SELECT * FROM goodtype,good where goodtype.id=good.goodtype_id-->
+<!--    </select>-->
+</mapper>

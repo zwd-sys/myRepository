@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.mapper.OrderMapper">
+    <resultMap id="cc" type="user_good">
+        <id property="id" column="id"></id>
+        <result property="user_id" column="user_id"></result>
+        <result property="xiadan_time" column="xiadan_time"></result>
+        <result property="good_code" column="good_code"></result>
+        <result property="money" column="money"></result>
+        <result property="coupon_money" column="coupon_money"></result>
+        <collection property="orderList" ofType="order">
+            <id property="oid" column="oid"></id>
+            <result property="good_id" column="good_id"></result>
+            <result property="good_name" column="good_name"></result>
+            <result property="good_price" column="good_price"></result>
+            <result property="good_img" column="good_img"></result>
+            <result property="good_num" column="good_num"></result>
+            <result property="order_id" column="order_id"></result>
+        </collection>
+    </resultMap>
+    <select id="queryByCode" resultMap="cc">
+        SELECT * FROM user_goods u,good g,orders o WHERE u.user_id=#{user_id} and u.good_code=#{good_code} AND o.order_id=u.id AND g.gid=o.good_id
+    </select>
+</mapper>

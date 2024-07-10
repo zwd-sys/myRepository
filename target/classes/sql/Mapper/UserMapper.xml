@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdtu.mapper.UserMapper">
+    <resultMap id="aa" type="user">
+        <id property="id" column="id"></id>
+        <result property="exp" column="exp"></result>
+        <result property="point" column="point"></result>
+        <result property="level" column="level"></result>
+        <result property="openId" column="openId"></result>
+        <result property="userName" column="userName"></result>
+        <result property="avatarURL" column="avatarURL"></result>
+        <result property="phone" column="phone"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="address" column="address"></result>
+        <result property="birthdaytime" column="birthdaytime"></result>
+        <collection property="couponList" ofType="coupon">
+            <result property="cid" column="cid"></result>
+            <result property="couponId" column="couponId"></result>
+            <result property="coupon_value" column="coupon_value"></result>
+        </collection>
+    </resultMap>
+
+    <select id="queryByOpenid" resultMap="aa">
+        SELECT * FROM coupon c ,user1 u,user_coupon uc where u.openId=#{openId} and u.id=uc.user_id and uc.coupon_id=c.couponId
+    </select>
+    <select id="queryByOpenid1" resultMap="aa">
+        SELECT * FROM user1 where openId=#{openId}
+    </select>
+<!--    <select id="queryByOpenid" resultMap="aa">-->
+<!--        SELECT * FROM coupon c,user_coupon uc where uc.user_id=#{user_id} and uc.coupon_id=c.couponId-->
+<!--    </select>-->
+    <insert id="insert" parameterType="user">
+        insert into user1(openId,avatarURL,userName) values (#{openId},#{avatarURL},#{userName})
+    </insert>
+    <update id="update" parameterType="user">
+        update user1 set userName=#{userName},phone=#{phone},sex=#{sex},birthday=#{birthday} where openId=#{openId}
+    </update>
+</mapper>
